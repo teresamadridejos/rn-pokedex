@@ -1,33 +1,63 @@
-import useFetch from "../hooks/useFetch";
-import Pokemon from "../interfaces/Pokemon.interface";
-import { createContext, ReactNode, useState } from "react";
+// PokemonContext.tsx
+import React, { createContext, useReducer, useContext, ReactNode } from 'react';
+import Pokemon from '../interfaces/Pokemon.interface';
 
-// Define la interfaz para el contexto
-interface PokemonContextType {
-  data: Pokemon[];
-  loading: boolean;
-  error: any;
-}
+// Define el tipo de estado de tu aplicación
+type AppState = {
+  pokemons: Pokemon[]; // Define el tipo Pokemon según tus necesidades
+  // Otros campos de estado si es necesario
+};
+
+// Define las acciones que puedes realizar en tu aplicación
+type AppAction =
+  | { type: 'ADD_POKEMON'; payload: Pokemon }
+  | { type: 'SET_POKEMONS'; payload: Pokemon[] };
+
+// Define el tipo para el contexto
+type AppContextType = {
+  state: AppState;
+  dispatch: React.Dispatch<AppAction>;
+};
 
 // Crea el contexto
-export const PokemonContext = createContext<PokemonContextType | undefined>(
-  undefined
-);
+const AppContext = createContext<AppContextType | undefined>(undefined);
 
-interface PokemonProviderProps {
+// Define el proveedor del contexto
+type AppProviderProps = {
   children: ReactNode;
+};
+
+// Define el inicializador de estado
+const initialState: AppState = {
+  pokemons: [],
+};
+
+// Define el reductor para manejar las acciones
+function appReducer(state: AppState, action: AppAction): AppState {
+  switch (action.type) {
+    case 'ADD_POKEMON':
+      return { ...state, pokemons: [...state.pokemons, action.payload] };
+      case 'SET_POKEMONS':
+        return { ...state, pokemons: action.payload };
+      default:
+        return state;
+  }
 }
 
-// Proporciona un componente que envuelva a tu aplicación y utilice el hook useFetch
-export const PokemonProvider = ({ children }: PokemonProviderProps) => {
-  const [pokemon, setPokemon] = useState<Pokemon[]>([]);
-  const { data, loading, error } = useFetch(
-    "https://pokeapi.co/api/v2/pokemon?limit=151"
-  );
+// Define el componente del proveedor del contexto
+export function AppProvider({ children }: AppProviderProps) {
+  const [state, dispatch] = useReducer(appReducer, initialState);
 
   return (
-    <PokemonContext.Provider value={{ data, loading, error }}>
-      {children}
-    </PokemonContext.Provider>
+    <AppContext.Provider value={{ state, dispatch }}>{children}</AppContext.Provider>
   );
-};
+}
+
+// Define un gancho personalizado para acceder al contexto
+export function useAppContext() {
+  const context = useContext(AppContext);
+  if (context === undefined) {
+    throw new Error('useAppContext debe ser utilizado dentro de un AppProvider');
+  }
+  return context;
+}

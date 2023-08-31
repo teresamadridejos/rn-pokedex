@@ -1,34 +1,21 @@
-// import React from 'react';
-// import { NavigationContainer } from '@react-navigation/native';
-// import { createStackNavigator } from '@react-navigation/stack';
+// AppNavigator.tsx
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import HomeScreen from '../screens/HomeScreen'; // Importa tu componente HomeScreen aquí
+// import AddPokemonScreen from '../screens/AddPokemonScreen'; // Importa tu componente AddPokemonScreen aquí
+// import PokemonDetailScreen from '../screens/PokemonDetailScreen'; // Importa tu componente PokemonDetailScreen aquí
 
-// // Importa las pantallas que usarás en el Stack Navigator
-// import HomeScreen from '../screens/HomeScreen';
-// import PokemonDetailScreen from '../screens/PokemonDetailScreen';
-// import AddPokemonScreen from '../screens/AddPokemonScreen';
+const Tab = createBottomTabNavigator();
 
-// // Crea un objeto Stack Navigator
-// const Stack = createStackNavigator();
-
-// // Define el componente AppNavigator
-// function AppNavigator() {
-//   return (
-//       <Stack.Navigator>
-//         <Stack.Screen name="Home" component={HomeScreen} />
-//         <Stack.Screen
-//                 options={{
-//                   headerTransparent: true,
-//                   title: "",
-//                   headerTintColor: "#fefefe",
-//                   headerShadowVisible: false,
-//                 }}
-//                 name="Pokemon"
-//                 component={PokemonScreen}
-//               />
-//        /* <Stack.Screen name="PokemonDetail" component={PokemonDetailScreen} />
-//         <Stack.Screen name="AddPokemon" component={AddPokemonScreen} />*/
-//       </Stack.Navigator>
-//   );
-// }
-
-export default AppNavigator;
+export default function AppNavigator() {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={HomeScreen} />
+        {/* <Tab.Screen name="Add Pokemon" component={AddPokemonScreen} />
+        <Tab.Screen name="Pokemon Detail" component={PokemonDetailScreen} /> */}
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+}

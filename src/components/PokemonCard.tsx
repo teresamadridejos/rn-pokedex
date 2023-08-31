@@ -1,65 +1,40 @@
-import { Text, View, StyleSheet, Image } from 'react-native';
-import { useState, useEffect } from 'react';
+// PokemonCard.tsx (or .js for JavaScript)
+import React from 'react';
+import { View, Text, Image, StyleSheet } from 'react-native';
 
-interface PokemonCardProps {
-  url: string;
-}
-
+// Define the type for the Pokemon prop
 interface Pokemon {
   name: string;
-  order: number;
-  sprites: {
-    other: {
-      'official-artwork': {
-        front_default: string;
-      };
-    };
-  };
-  types: {
-    slot: number;
-    type: {
-      name: string;
-    };
-  };
+  id: number; // Assuming id is a number
 }
 
-export function PokemonCard({ url }: PokemonCardProps) {
-  const [pokemon, setPokemon] = useState<Pokemon>();
-
-  useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setPokemon(data);
-      });
-  }, [url]);
-  if (!pokemon) return null;
+const PokemonCard: React.FC<{ pokemon: Pokemon }> = ({ pokemon }) => {
   return (
-    <View style={styles.container}>
+    <View style={styles.card}>
+      <Text>Name: {pokemon.name}</Text>
+      <Text>Number: {pokemon.id}</Text>
       <Image
-        source={{
-          uri: pokemon.sprites.other['official-artwork'].front_default,
-        }}
+        source={{ uri: `https://pokeapi.co/media/sprites/pokemon/${pokemon.id}.png` }}
         style={styles.image}
       />
-      <Text style={styles.name}>{pokemon.name}</Text>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 8,
-    flexDirection: 'row',
+  card: {
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 8,
+    padding: 16,
+    marginBottom: 16,
     alignItems: 'center',
   },
   image: {
     width: 100,
     height: 100,
-    marginRight: 32,
-  },
-  name: {
-    fontWeight: 'bold',
-    fontSize: 32,
+    marginTop: 8,
   },
 });
+
+export default PokemonCard;
