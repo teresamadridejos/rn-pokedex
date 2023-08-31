@@ -1,12 +1,29 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  SafeAreaView,
+  FlatList,
+  ActivityIndicator,
+} from 'react-native';
+import { useState, useEffect } from 'react';
+import { PokemonCard } from './src/components/PokemonCard';
+import Pokemon from './src/interfaces/Pokemon.interface'
+
+
 
 export default function App() {
+  const [pokemon, setPokemon] = useState<Pokemon[]>([]);
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        data={pokemon}
+        keyExtractor={(item) => item.name}
+        renderItem={({ item }) => <PokemonCard url={item.url} />}
+        
+      />
+    </SafeAreaView>
   );
 }
 
@@ -14,7 +31,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
