@@ -1,40 +1,45 @@
-// PokemonCard.tsx (or .js for JavaScript)
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 
-// Define the type for the Pokemon prop
 interface Pokemon {
+  imageUrl: string | undefined;
   name: string;
-  id: number; // Assuming id is a number
+  id: number;
 }
 
 const PokemonCard: React.FC<{ pokemon: Pokemon }> = ({ pokemon }) => {
   return (
     <View style={styles.card}>
-      <Text>Name: {pokemon.name}</Text>
-      <Text>Number: {pokemon.id}</Text>
+      <Text style={styles.name}>{pokemon.name}</Text>
+      <Text># {pokemon.id}</Text>
       <Image
-        source={{ uri: `https://pokeapi.co/media/sprites/pokemon/${pokemon.id}.png` }}
+        source={{ uri: pokemon.imageUrl }}
         style={styles.image}
       />
     </View>
   );
 };
 
+
 const styles = StyleSheet.create({
   card: {
-    borderWidth: 1,
-    borderColor: 'gray',
-    borderRadius: 8,
-    padding: 16,
+    backgroundColor: '#FFB3CBFF',
+    borderRadius: 10,
     marginBottom: 16,
+    padding: 8,
+    flexDirection: 'row',
     alignItems: 'center',
   },
   image: {
     width: 100,
     height: 100,
-    marginTop: 8,
+    marginRight: 32,
+  },
+  name: {
+    fontWeight: 'bold',
+    fontSize: 32,
   },
 });
 
 export default PokemonCard;
+

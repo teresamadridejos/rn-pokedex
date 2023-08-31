@@ -1,19 +1,31 @@
-// HomeScreen.js (or HomeScreen.tsx for TypeScript)
-import React, { useContext, useEffect } from 'react';
-import { View, Text, SafeAreaView, FlatList, ActivityIndicator } from 'react-native';
-import { useAppContext } from '../context/AppContext';
-import { useFetch } from '../hooks/useFetch';
+import React, { useEffect } from "react";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  FlatList,
+  ActivityIndicator,
+} from "react-native";
+import { useAppContext } from "../context/AppContext";
+import { useFetch } from "../hooks/useFetch";
+import PokemonCard from "../components/PokemonCard";
 
 export default function HomeScreen() {
   const { state, dispatch } = useAppContext();
-  const { data, loading, error } = useFetch('https://pokeapi.co/api/v2/pokemon?limit=151');
+  const { data, loading, error } = useFetch(
+    "https://pokeapi.co/api/v2/pokemon?limit=151"
+  );
 
   useEffect(() => {
-    // When data is loaded, dispatch an action to update the context state
     if (!loading && data) {
-      dispatch({ type: 'SET_POKEMONS', payload: data.results });
+      const mappedPokemons = data.results.map((pokemon: any, index: number) => ({
+        name: pokemon.name,
+        id: index + 1, // Suponiendo que el índice + 1 sea el número de Pokémon
+      }));
+      dispatch({ type: 'SET_POKEMONS', payload: mappedPokemons });
     }
   }, [data, loading, dispatch]);
+  
 
   if (loading) {
     return <ActivityIndicator />;
@@ -26,12 +38,8 @@ export default function HomeScreen() {
   return (
     <SafeAreaView>
       <FlatList
-        data={state.pokemons} // Use the pokemons data from the context state
-        renderItem={({ item }) => (
-          <View>
-            <Text>{item.name}</Text>
-          </View>
-        )}
+        data={state.pokemons}
+        renderItem={({ item }) => <PokemonCard pokemon={item} />}
         keyExtractor={(item) => item.name}
       />
     </SafeAreaView>

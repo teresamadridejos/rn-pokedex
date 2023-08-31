@@ -1,6 +1,6 @@
 // PokemonContext.tsx
-import React, { createContext, useReducer, useContext, ReactNode } from 'react';
-import Pokemon from '../interfaces/Pokemon.interface';
+import React, { createContext, useReducer, useContext, ReactNode } from "react";
+import Pokemon from "../interfaces/Pokemon.interface";
 
 // Define el tipo de estado de tu aplicación
 type AppState = {
@@ -10,8 +10,8 @@ type AppState = {
 
 // Define las acciones que puedes realizar en tu aplicación
 type AppAction =
-  | { type: 'ADD_POKEMON'; payload: Pokemon }
-  | { type: 'SET_POKEMONS'; payload: Pokemon[] };
+  | { type: "ADD_POKEMON"; payload: Pokemon }
+  | { type: "SET_POKEMONS"; payload: Pokemon[] };
 
 // Define el tipo para el contexto
 type AppContextType = {
@@ -29,18 +29,18 @@ type AppProviderProps = {
 
 // Define el inicializador de estado
 const initialState: AppState = {
-  pokemons: [],
+  pokemons: [] as Pokemon[],
 };
 
 // Define el reductor para manejar las acciones
 function appReducer(state: AppState, action: AppAction): AppState {
   switch (action.type) {
-    case 'ADD_POKEMON':
+    case "ADD_POKEMON":
       return { ...state, pokemons: [...state.pokemons, action.payload] };
-      case 'SET_POKEMONS':
-        return { ...state, pokemons: action.payload };
-      default:
-        return state;
+    case "SET_POKEMONS":
+      return { ...state, pokemons: action.payload };
+    default:
+      return state;
   }
 }
 
@@ -49,7 +49,9 @@ export function AppProvider({ children }: AppProviderProps) {
   const [state, dispatch] = useReducer(appReducer, initialState);
 
   return (
-    <AppContext.Provider value={{ state, dispatch }}>{children}</AppContext.Provider>
+    <AppContext.Provider value={{ state, dispatch }}>
+      {children}
+    </AppContext.Provider>
   );
 }
 
@@ -57,7 +59,9 @@ export function AppProvider({ children }: AppProviderProps) {
 export function useAppContext() {
   const context = useContext(AppContext);
   if (context === undefined) {
-    throw new Error('useAppContext debe ser utilizado dentro de un AppProvider');
+    throw new Error(
+      "useAppContext debe ser utilizado dentro de un AppProvider"
+    );
   }
   return context;
 }
