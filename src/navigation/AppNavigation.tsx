@@ -25,7 +25,8 @@ const HomeStack = () => {
         name="PokemonDetail"
         component={PokemonDetailScreen}
         options={{
-          headerShown: false,
+          headerTitle: '',
+          headerTransparent: true,
         }}
       />
     </Stack.Navigator>
