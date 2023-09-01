@@ -1,5 +1,17 @@
-export default interface Pokemon {
+export interface Pokemon {
   name: string;
-  id: number;
-  imageUrl: string;
+  order: number;
+  sprites: {
+    other: {
+      'official-artwork': {
+        front_default: string;
+      };
+    };
+  };
+  types: {
+    slot: number;
+    type: {
+      name: string;
+    };
+  };
 }

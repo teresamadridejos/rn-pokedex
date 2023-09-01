@@ -1,47 +1,44 @@
-import React, { useEffect } from "react";
 import {
-  View,
+  StyleSheet,
   Text,
   SafeAreaView,
   FlatList,
-  ActivityIndicator,
-} from "react-native";
-import { useAppContext } from "../context/AppContext";
-import { useFetch } from "../hooks/useFetch";
-import PokemonCard from "../components/PokemonCard";
+  View,
+} from 'react-native';
+import { useContext } from 'react';
+import { AppContext } from '../context/Context';
+import { PokemonCard } from '../components/PokemonCard';
+import { Pokemon } from '../interfaces/Pokemon.interface';
+
 
 export default function HomeScreen() {
-  const { state, dispatch } = useAppContext();
-  const { data, loading, error } = useFetch(
-    "https://pokeapi.co/api/v2/pokemon?limit=151"
-  );
+  const { state } = useContext(AppContext); // Obtén el estado de tu contexto global
 
-  useEffect(() => {
-    if (!loading && data) {
-      const mappedPokemons = data.results.map((pokemon: any, index: number) => ({
-        name: pokemon.name,
-        id: index + 1, // Suponiendo que el índice + 1 sea el número de Pokémon
-      }));
-      dispatch({ type: 'SET_POKEMONS', payload: mappedPokemons });
-    }
-  }, [data, loading, dispatch]);
+  // const { pokemons } = state; // Extrae el arry de Pokémon del estado
+  console.log(state.pokemons);
+  // console.log(pokemons[1].url);
   
 
-  if (loading) {
-    return <ActivityIndicator />;
-  }
-
-  if (error) {
-    return <Text>Error: {error.message}</Text>;
-  }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView >
+    {state.pokemons.length === 0 ? (
+      <Text>Cargando...</Text>
+    ) : (
+
+      // state.pokemons[0].map((item)=> item.name)
       <FlatList
-        data={state.pokemons}
-        renderItem={({ item }) => <PokemonCard pokemon={item} />}
-        keyExtractor={(item) => item.name}
+        data={state.pokemons[0]}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item }) => (
+          
+          <PokemonCard url={item.url} />
+            // <Text>{item.url}</Text>
+          
+        )}
       />
-    </SafeAreaView>
+    )}
+  </SafeAreaView>
   );
 }
+

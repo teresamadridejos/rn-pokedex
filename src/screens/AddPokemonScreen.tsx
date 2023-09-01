@@ -1,12 +1,15 @@
-// import React from 'react';
-// import { View, Text } from 'react-native';
+import React from 'react';
+import { View, Text, SafeAreaView } from 'react-native';
 
-// function AddPokemonScreen() {
-//   return (
-//     <View>
-//       <Text>Hello from AddPokemonScreen</Text>
-//     </View>
-//   );
-// }
 
-// export default AddPokemonScreen;
+const AddPokemonScreen = () => {
+  return (
+    <SafeAreaView>
+      <Text>Add Pokemon </Text>
+    </SafeAreaView>
+  );
+};
+
+
+
+export default AddPokemonScreen;

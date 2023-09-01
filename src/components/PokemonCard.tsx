@@ -1,31 +1,39 @@
-import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, Image } from 'react-native';
+import useFetch from '../hooks/useFetch';
 
-interface Pokemon {
-  imageUrl: string | undefined;
-  name: string;
-  id: number;
+interface PokemonCardProps {
+  url: string;
 }
 
-const PokemonCard: React.FC<{ pokemon: Pokemon }> = ({ pokemon }) => {
+
+
+export function PokemonCard({ url }: PokemonCardProps) {
+  const {data, loading, error } = useFetch(url);
+  console.log(data);
+
+  if (loading) {
+    return <Text>Loading...</Text>;
+  }
+
+  if (error || !data) {
+    return <Text>Error loading Pokémon data</Text>;
+  }
+
   return (
-    <View style={styles.card}>
-      <Text style={styles.name}>{pokemon.name}</Text>
-      <Text># {pokemon.id}</Text>
+    <View style={styles.container}>
       <Image
-        source={{ uri: pokemon.imageUrl }}
+        source={{
+          uri: data.sprites.other['official-artwork'].front_default,
+        }}
         style={styles.image}
       />
+      <Text style={styles.name}>{data.name}</Text>
     </View>
   );
-};
-
+}
 
 const styles = StyleSheet.create({
-  card: {
-    backgroundColor: '#FFB3CBFF',
-    borderRadius: 10,
-    marginBottom: 16,
+  container: {
     padding: 8,
     flexDirection: 'row',
     alignItems: 'center',
@@ -40,6 +48,3 @@ const styles = StyleSheet.create({
     fontSize: 32,
   },
 });
-
-export default PokemonCard;
-
