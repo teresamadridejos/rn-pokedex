@@ -1,5 +1,12 @@
 import React from "react";
-import { Text, View, StyleSheet, Image, ScrollView } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  ScrollView,
+  ImageBackground,
+} from "react-native";
 import useFetch from "../hooks/useFetch";
 
 interface PokemonCardProps {

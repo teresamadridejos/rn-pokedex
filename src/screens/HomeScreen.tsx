@@ -29,7 +29,10 @@ export default function HomeScreen() {
         ) : (
           <FlatList
             numColumns={2}
-            contentContainerStyle={{justifyContent:"center", alignItems:"center"}}
+            contentContainerStyle={{
+              justifyContent: "center",
+              alignItems: "center",
+            }}
             data={state.pokemons[0]}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item }) => <PokemonCard url={item.url} />}
@@ -46,12 +49,15 @@ const styles = StyleSheet.create({
     width: 200,
     height: 200,
     transform: [{ rotate: "-20deg" }],
-    marginLeft: 275,
+    marginLeft: 270,
     top: -50,
   },
   title: {
     fontSize: 24,
     fontWeight: "bold",
     paddingHorizontal: 16,
+    color: "grey",
+    marginBottom: 5,
+    marginTop: 50,
   },
 });
