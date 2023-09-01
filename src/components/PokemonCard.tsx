@@ -9,7 +9,7 @@ interface PokemonCardProps {
 export function PokemonCard({ url }: PokemonCardProps) {
   const { data, loading, error } = useFetch(url);
   console.log(data);
-  const { color } = useFetch('https://pokeapi.co/api/v2/pokemon-color/');
+  const { color } = useFetch("https://pokeapi.co/api/v2/pokemon-color/");
 
   if (loading) {
     return <Text>Loading...</Text>;
@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
   card: {
     padding: 8,
     alignItems: "flex-start",
-    width: 130,
-    height: 90,
+    width: 170,
+    height: 120,
     backgroundColor: "white",
     borderRadius: 8,
     elevation: 5,
@@ -54,21 +54,22 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     position: "absolute",
-    right: -30,
-    top: 25,
+    right: -25,
+    top: 37,
     width: 100,
     height: 100,
   },
   image: {
-    width: "80%",
-    height: "80%",
+    width: "90%",
+    height: "90%",
   },
   textContainer: {
     flexDirection: "column",
-    marginRight: 32,
+    marginRight: 45,
+    marginTop: 15,
   },
   text: {
     fontWeight: "bold",
-    fontSize: 16,
+    fontSize: 18,
   },
 });
