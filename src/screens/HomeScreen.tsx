@@ -6,11 +6,11 @@ import {
   FlatList,
   View,
   ImageBackground,
+  TouchableOpacity,
 } from "react-native";
 import { useContext } from "react";
 import { AppContext } from "../context/Context";
 import { PokemonCard } from "../components/PokemonCard";
-import { Pokemon } from "../interfaces/Pokemon.interface";
 
 export default function HomeScreen() {
   const { state } = useContext(AppContext);
@@ -35,7 +35,18 @@ export default function HomeScreen() {
             }}
             data={state.pokemons[0]}
             keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item }) => <PokemonCard url={item.url} />}
+            renderItem={({ item }) => (
+    
+              <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('PokemonDetail', {url: item.url });
+    
+              }}
+              >
+              <PokemonCard url={item && 'url' in item ? item.url : ''} />
+              </TouchableOpacity>
+              
+            )}
           />
         )}
       </SafeAreaView>

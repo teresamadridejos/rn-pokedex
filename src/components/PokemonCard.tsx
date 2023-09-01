@@ -16,7 +16,6 @@ interface PokemonCardProps {
 export function PokemonCard({ url }: PokemonCardProps) {
   const { data, loading, error } = useFetch(url);
   console.log(data);
-  const { color } = useFetch("https://pokeapi.co/api/v2/pokemon-color/");
 
   if (loading) {
     return <Text>Loading...</Text>;
