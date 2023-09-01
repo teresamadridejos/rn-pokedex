@@ -10,10 +10,12 @@ import {
 } from "react-native";
 import { useContext } from "react";
 import { AppContext } from "../context/Context";
+import { useNavigation } from "@react-navigation/native"; // Importa useNavigation
 import { PokemonCard } from "../components/PokemonCard";
 
 export default function HomeScreen() {
   const { state } = useContext(AppContext);
+  const navigation = useNavigation(); // Obtiene el objeto de navegación
 
   return (
     <ImageBackground
@@ -36,16 +38,13 @@ export default function HomeScreen() {
             data={state.pokemons[0]}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item }) => (
-    
               <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('PokemonDetail', {url: item.url });
-    
-              }}
+                onPress={() => {
+                  navigation.navigate('PokemonDetail', { url: item.url });
+                }}
               >
-              <PokemonCard url={item && 'url' in item ? item.url : ''} />
+                <PokemonCard url={item && 'url' in item ? item.url : ''} />
               </TouchableOpacity>
-              
             )}
           />
         )}
