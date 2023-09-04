@@ -119,9 +119,6 @@ const styles = StyleSheet.create({
     zIndex: 1000,
   },
   pokeBall: {
-    color: "grey",
-    fontSize: 300,
-    fontWeight: "bold",
     position: "absolute",
     opacity: 0.1,
     width: 200,
