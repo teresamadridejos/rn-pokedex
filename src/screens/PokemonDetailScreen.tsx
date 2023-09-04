@@ -24,7 +24,7 @@ const PokemonDetailScreen = () => {
   const handleFavoriteClick = () => {
     setIsFavorite(!isFavorite);
   };
-  
+
   if (loading) {
     return (
       <SafeAreaView style={styles.container}>
@@ -50,15 +50,15 @@ const PokemonDetailScreen = () => {
         >
           <View style={styles.container}>
             <ScrollView>
-            <TouchableOpacity
+              <TouchableOpacity
                 style={styles.heartIcon}
                 onPress={handleFavoriteClick}
               >
                 <Icon
-                name={isFavorite ? "heart" : "heart-o"}
-                size={24}
-                color={isFavorite ? "black" : "black"}
-              />
+                  name={isFavorite ? "heart" : "heart-o"}
+                  size={24}
+                  color={isFavorite ? "black" : "black"}
+                />
               </TouchableOpacity>
               {/*INFO ON THE TOP */}
               <View style={styles.topView}>
@@ -92,35 +92,36 @@ const PokemonDetailScreen = () => {
 
               {/*INFO ON THE BOTTOM */}
               <View style={styles.bottomView}>
-                <Text style={styles.info}>Info</Text>
-                <Text style={styles.weight}>Weight: {weight} kg</Text>
-                <Text style={styles.sprites}>Sprites:</Text>
-                <View style={styles.spritesContainer}>
-                  <Image
-                    source={{ uri: sprites.back_default }}
-                    style={styles.spriteImage}
-                  />
-                  <Image
-                    source={{ uri: sprites.back_shiny }}
-                    style={styles.spriteImage}
-                  />
-                  <Image
-                    source={{ uri: sprites.front_default }}
-                    style={styles.spriteImage}
-                  />
-                  <Image
-                    source={{ uri: sprites.front_shiny }}
-                    style={styles.spriteImage}
-                  />
-                </View>
-                <Text style={styles.abilities}>Abilities:</Text>
-                <View style={styles.abilitiesContainer}>
-                  {abilities.map((ability, index) => (
-                    <Text key={index} style={styles.abilityText}>
-                      {ability.ability.name}
-                      
-                    </Text>
-                  ))}
+                <View style={styles.infoContainer}>
+                  <Text style={styles.info}>Info</Text>
+                  <Text style={styles.weight}>Weight: {weight} kg</Text>
+                  <Text style={styles.sprites}>Sprites:</Text>
+                  <View style={styles.spritesContainer}>
+                    <Image
+                      source={{ uri: sprites.back_default }}
+                      style={styles.spriteImage}
+                    />
+                    <Image
+                      source={{ uri: sprites.back_shiny }}
+                      style={styles.spriteImage}
+                    />
+                    <Image
+                      source={{ uri: sprites.front_default }}
+                      style={styles.spriteImage}
+                    />
+                    <Image
+                      source={{ uri: sprites.front_shiny }}
+                      style={styles.spriteImage}
+                    />
+                  </View>
+                  <Text style={styles.abilities}>Abilities:</Text>
+                  <View style={styles.abilitiesContainer}>
+                    {abilities.map((ability, index) => (
+                      <Text key={index} style={styles.abilityText}>
+                        {ability.ability.name}
+                      </Text>
+                    ))}
+                  </View>
                 </View>
               </View>
             </ScrollView>
@@ -133,7 +134,7 @@ const PokemonDetailScreen = () => {
 
 const styles = StyleSheet.create({
   flexContainer: {
-    flex: 1, // Para que el contenedor ocupe toda la pantalla
+    flex: 1,
   },
   gradientBackground: {
     flex: 1,
@@ -142,12 +143,13 @@ const styles = StyleSheet.create({
     marginTop: 60,
     flex: 1,
     padding: 16,
+    marginBottom: 40,
   },
   heartIcon: {
     position: "absolute",
-    top: 25, 
-    right: 25, 
-    zIndex: 1001, 
+    top: 25,
+    right: 25,
+    zIndex: 1001,
   },
   loadingText: {
     fontSize: 18,
@@ -155,7 +157,7 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     marginBottom: 16,
-    position: "relative", 
+    position: "relative",
     alignItems: "center",
   },
   image: {
@@ -209,14 +211,15 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   bottomView: {
-    backgroundColor:  "rgba(255, 255, 255, 0.75)",
+    backgroundColor: "rgba(255, 255, 255, 0.75)",
     color: "black",
     paddingTop: 26,
     paddingHorizontal: 40,
     borderTopLeftRadius: 50,
     borderTopRightRadius: 50,
-    flex: 1
+    flex: 1,
   },
+  infoContainer: {},
   info: {
     fontSize: 25,
     fontWeight: "bold",
