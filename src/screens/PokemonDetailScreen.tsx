@@ -31,49 +31,64 @@ const PokemonDetailScreen = () => {
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView>
-          <Text style={styles.name}>{name}</Text>
-          <Text style={styles.id}>#{id}</Text>
-          <View style={styles.imageContainer}>
-            <Image
-              source={{ uri: sprites.other["official-artwork"].front_default }}
-              style={styles.image}
-            />
-          </View>
-          <View style={styles.typeContainer}>
-            {types.map((type: { type: { name: string } }, index: number) => (
-              <Text key={index} style={styles.typeText}>
-                {type.type.name.toUpperCase()}
-              </Text>
-            ))}
+          {/*INFO ON THE TOP */}
+          <View style={styles.topView}>
+            <View style={styles.imageContainer}>
+              <Image
+                source={{
+                  uri: sprites.other["official-artwork"].front_default,
+                }}
+                style={styles.image}
+              />
+              <Image
+                source={require("../../assets/pokemonBall.png")}
+                style={styles.pokeBall}
+              />
+            </View>
+
+            <View style={styles.nameId}>
+              <Text style={styles.id}>#{id}</Text>
+              <Text style={styles.name}>{name}</Text>
+            </View>
+            <View style={styles.typeContainer}>
+              {types.map((type: { type: { name: string } }, index: number) => (
+                <Text key={index} style={styles.typeText}>
+                  {type.type.name.toUpperCase()}
+                </Text>
+              ))}
+            </View>
           </View>
 
-          <Text style={styles.weight}>Weight: {weight} kg</Text>
-          <Text style={styles.sprites}>Sprites:</Text>
-          <View style={styles.spritesContainer}>
-            <Image
-              source={{ uri: sprites.back_default }}
-              style={styles.spriteImage}
-            />
-            <Image
-              source={{ uri: sprites.back_shiny }}
-              style={styles.spriteImage}
-            />
-            <Image
-              source={{ uri: sprites.front_default }}
-              style={styles.spriteImage}
-            />
-            <Image
-              source={{ uri: sprites.front_shiny }}
-              style={styles.spriteImage}
-            />
-          </View>
-          <Text style={styles.abilities}>Abilities:</Text>
-          <View style={styles.abilitiesContainer}>
-            {abilities.map((ability, index) => (
-              <Text key={index} style={styles.abilityText}>
-                {ability.ability.name}
-              </Text>
-            ))}
+          {/*INFO ON THE BOTTOM */}
+          <View style={styles.bottomView}>
+            <Text style={styles.weight}>Weight: {weight} kg</Text>
+            <Text style={styles.sprites}>Sprites:</Text>
+            <View style={styles.spritesContainer}>
+              <Image
+                source={{ uri: sprites.back_default }}
+                style={styles.spriteImage}
+              />
+              <Image
+                source={{ uri: sprites.back_shiny }}
+                style={styles.spriteImage}
+              />
+              <Image
+                source={{ uri: sprites.front_default }}
+                style={styles.spriteImage}
+              />
+              <Image
+                source={{ uri: sprites.front_shiny }}
+                style={styles.spriteImage}
+              />
+            </View>
+            <Text style={styles.abilities}>Abilities:</Text>
+            <View style={styles.abilitiesContainer}>
+              {abilities.map((ability, index) => (
+                <Text key={index} style={styles.abilityText}>
+                  {ability.ability.name}
+                </Text>
+              ))}
+            </View>
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -82,8 +97,7 @@ const PokemonDetailScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    margin: 25,
+  topView: {
     marginTop: 60,
     flex: 1,
     padding: 16,
@@ -92,26 +106,45 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: "center",
   },
-  name: {
-    fontSize: 30,
-    fontWeight: "bold",
-    marginBottom: 8,
-    textAlign: "left",
-  },
-  id: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginBottom: 16,
-    textAlign: "left",
-  },
   imageContainer: {
-    alignItems: "center",
     marginBottom: 16,
+    position: "relative", // Añade posición relativa al contenedor
+    alignItems: "center",
   },
   image: {
-    width: 270,
-    height: 270,
+    width: 200,
+    height: 200,
     resizeMode: "cover",
+    zIndex: 1000,
+  },
+  pokeBall: {
+    color: "grey",
+    fontSize: 300,
+    fontWeight: "bold",
+    position: "absolute",
+    opacity: 0.1,
+    width: 200,
+    height: 200,
+    transform: [{ rotate: "-20deg" }],
+  },
+  nameId: {
+    alignItems: "center",
+  },
+  name: {
+    fontSize: 55,
+    fontWeight: "bold",
+    marginBottom: 18,
+    textAlign: "left",
+    color: "grey",
+    textShadowColor: "rgba(0, 0, 0, 0.4)", // Color de la sombra
+    textShadowOffset: { width: 1, height: 1 }, // Desplazamiento de la sombra
+    textShadowRadius: 7, // Radio de la sombra
+  },
+  id: {
+    fontSize: 25,
+    fontWeight: "bold",
+    textAlign: "left",
+    color: "grey",
   },
   typeContainer: {
     flexDirection: "row",
@@ -119,13 +152,22 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   typeText: {
-    fontSize: 16,
-    marginRight: 8,
+    fontSize: 18,
     backgroundColor: "#48F10E",
     color: "white",
-    paddingVertical: 4,
-    paddingHorizontal: 8,
+    padding: 10,
+    paddingHorizontal: 20,
     borderRadius: 20,
+    shadowColor: "black",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+  },
+  bottomView: {
+    backgroundColor: "white",
+    padding: 26,
+    borderTopLeftRadius: 50,
+    borderTopRightRadius: 50,
   },
   weight: {
     fontSize: 18,
@@ -141,12 +183,12 @@ const styles = StyleSheet.create({
   spritesContainer: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-around",
+    justifyContent: "space-evenly",
     marginBottom: 16,
   },
   spriteImage: {
-    width: 150,
-    height: 150,
+    width: 70,
+    height: 70,
   },
   abilities: {
     fontSize: 18,
