@@ -61,6 +61,7 @@ const PokemonDetailScreen = () => {
 
           {/*INFO ON THE BOTTOM */}
           <View style={styles.bottomView}>
+            <Text style={styles.info}>Info</Text>
             <Text style={styles.weight}>Weight: {weight} kg</Text>
             <Text style={styles.sprites}>Sprites:</Text>
             <View style={styles.spritesContainer}>
@@ -149,7 +150,7 @@ const styles = StyleSheet.create({
   typeContainer: {
     flexDirection: "row",
     justifyContent: "center",
-    marginBottom: 16,
+    marginBottom: 6,
   },
   typeText: {
     fontSize: 18,
@@ -166,41 +167,51 @@ const styles = StyleSheet.create({
   bottomView: {
     backgroundColor: "white",
     padding: 26,
+    paddingHorizontal: 40,
     borderTopLeftRadius: 50,
     borderTopRightRadius: 50,
+  },
+  info: {
+    fontSize: 25,
+    fontWeight: "bold",
+    textDecorationLine: "underline",
+    marginBottom: 15,
   },
   weight: {
     fontSize: 18,
     fontWeight: "bold",
-    textAlign: "center",
     marginBottom: 16,
+    color: "grey"
   },
   sprites: {
     fontSize: 18,
     fontWeight: "bold",
-    textAlign: "center",
+    color: "grey"
   },
   spritesContainer: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-evenly",
-    marginBottom: 16,
+    marginBottom: 10,
   },
   spriteImage: {
     width: 70,
     height: 70,
   },
+abilitiesContainer: {
+    marginBottom: 16,
+    flexDirection: "row", // Organiza las habilidades en una fila
+    flexWrap: "wrap", // Permite que las habilidades se envuelvan en varias líneas
+    alignItems: "center", // Alinea las habilidades verticalmente en el centro
+  },
   abilities: {
     fontSize: 18,
     fontWeight: "bold",
-    textAlign: "center",
-  },
-  abilitiesContainer: {
-    marginBottom: 16,
+    color: "grey"
   },
   abilityText: {
     fontSize: 16,
-    marginBottom: 4,
+    marginBottom: 10,
     backgroundColor: "#078716",
     color: "white",
     paddingVertical: 4,
@@ -211,6 +222,8 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.2,
     shadowRadius: 4,
+    marginRight: 10, // Espacio entre las habilidades
+    marginTop: 10, // Espacio entre las habilidades y "Abilities"
   },
 });
 
