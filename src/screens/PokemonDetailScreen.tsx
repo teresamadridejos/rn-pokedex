@@ -39,14 +39,14 @@ const PokemonDetailScreen = () => {
               style={styles.image}
             />
           </View>
-          <Text style={styles.type}>Type: {data.type}</Text>
           <View style={styles.typeContainer}>
-            {types.map((type, index) => (
+            {types.map((type: { type: { name: string } }, index: number) => (
               <Text key={index} style={styles.typeText}>
-                {type.type.name}
+                {type.type.name.toUpperCase()}
               </Text>
             ))}
           </View>
+
           <Text style={styles.weight}>Weight: {weight} kg</Text>
           <Text style={styles.sprites}>Sprites:</Text>
           <View style={styles.spritesContainer}>
@@ -107,22 +107,11 @@ const styles = StyleSheet.create({
   imageContainer: {
     alignItems: "center",
     marginBottom: 16,
-    shadowColor: "black",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    borderRadius: 150, // Hace que el contenedor sea circular
-    overflow: "hidden", // Recorta la imagen a la forma del contenedor circular
   },
   image: {
     width: 270,
     height: 270,
     resizeMode: "cover",
-  },
-  type: {
-    fontSize: 18,
-    fontWeight: "bold",
-    textAlign: "center",
   },
   typeContainer: {
     flexDirection: "row",
@@ -175,6 +164,11 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     paddingHorizontal: 8,
     borderRadius: 20,
+    textAlign: "center",
+    shadowColor: "black",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
   },
 });
 
