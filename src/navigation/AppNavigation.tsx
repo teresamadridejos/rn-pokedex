@@ -2,7 +2,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "../screens/HomeScreen";
-import SearchScreen from "../screens/HomeScreen"; 
+import SearchScreen from "../screens/SearchPokemonScreen";
 import AddNewScreen from "../screens/AddPokemonScreen";
 import PokemonDetailScreen from "../screens/PokemonDetailScreen"; // Importa PokemonDetailScreen
 import { Ionicons } from "@expo/vector-icons";
@@ -25,7 +25,7 @@ const HomeStack = () => {
         name="PokemonDetail"
         component={PokemonDetailScreen}
         options={{
-          headerTitle: '',
+          headerTitle: "",
           headerTransparent: true,
         }}
       />
