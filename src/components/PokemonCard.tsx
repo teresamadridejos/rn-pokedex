@@ -38,13 +38,13 @@ export function PokemonCard({ url }: PokemonCardProps) {
           }}
           style={styles.image}
         />
-        </View>
-        <View style={styles.pokeBallContainer}>
+      </View>
+      <View style={styles.pokeBallContainer}>
         <Image
           source={require("../../assets/pokemonBall.png")}
           style={styles.pokeBall}
         />
-         </View>
+      </View>
     </View>
   );
 }
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     width: 170,
     height: 120,
-    backgroundColor: "white",
+    backgroundColor: "rgba(255, 255, 255, 0.75)",
     borderRadius: 8,
     elevation: 5,
     shadowColor: "rgba(0, 0, 0, 0.5)",
@@ -78,8 +78,8 @@ const styles = StyleSheet.create({
   pokeBallContainer: {
     justifyContent: "center",
     alignItems: "center",
-    left: 125, 
-    bottom: 5
+    left: 125,
+    bottom: 5,
   },
   pokeBall: {
     opacity: 0.05,
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flexDirection: "column",
-    padding: 15
+    padding: 15,
   },
   name: {
     fontWeight: "bold",
@@ -99,5 +99,5 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "grey",
     fontSize: 15,
-  }
+  },
 });
