@@ -163,6 +163,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.2,
     shadowRadius: 4,
+    marginRight: 10,
   },
   bottomView: {
     backgroundColor: "white",
@@ -200,9 +201,9 @@ const styles = StyleSheet.create({
   },
 abilitiesContainer: {
     marginBottom: 16,
-    flexDirection: "row", // Organiza las habilidades en una fila
-    flexWrap: "wrap", // Permite que las habilidades se envuelvan en varias líneas
-    alignItems: "center", // Alinea las habilidades verticalmente en el centro
+    flexDirection: "row", 
+    flexWrap: "wrap", 
+    alignItems: "center", 
   },
   abilities: {
     fontSize: 18,
@@ -210,20 +211,20 @@ abilitiesContainer: {
     color: "grey"
   },
   abilityText: {
-    fontSize: 16,
+    fontSize: 18,
     marginBottom: 10,
     backgroundColor: "#078716",
     color: "white",
-    paddingVertical: 4,
-    paddingHorizontal: 8,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
     borderRadius: 20,
     textAlign: "center",
     shadowColor: "black",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.2,
     shadowRadius: 4,
-    marginRight: 10, // Espacio entre las habilidades
-    marginTop: 10, // Espacio entre las habilidades y "Abilities"
+    marginRight: 10, 
+    marginTop: 10, 
   },
 });
 
