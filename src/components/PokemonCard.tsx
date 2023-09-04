@@ -28,8 +28,8 @@ export function PokemonCard({ url }: PokemonCardProps) {
   return (
     <View style={styles.card}>
       <View style={styles.textContainer}>
-        <Text style={styles.text}>{data.name}</Text>
-        <Text style={styles.text}>#{data.id}</Text>
+        <Text style={styles.name}>{data.name}</Text>
+        <Text style={styles.id}>#{data.id}</Text>
       </View>
       <View style={styles.imageContainer}>
         <Image
@@ -51,7 +51,6 @@ export function PokemonCard({ url }: PokemonCardProps) {
 
 const styles = StyleSheet.create({
   card: {
-    padding: 8,
     alignItems: "flex-start",
     width: 170,
     height: 120,
@@ -77,23 +76,28 @@ const styles = StyleSheet.create({
     height: "90%",
   },
   pokeBallContainer: {
-    justifyContent: "center", // Centra la imagen verticalmente
+    justifyContent: "center",
     alignItems: "center",
-    left: 115 
+    left: 125, 
+    bottom: 5
   },
   pokeBall: {
     opacity: 0.05,
-    width: 100,
-    height: 100,
+    width: 95,
+    height: 95,
     position: "absolute",
   },
   textContainer: {
     flexDirection: "column",
-    marginRight: 45,
-    marginTop: 15,
+    padding: 15
   },
-  text: {
+  name: {
     fontWeight: "bold",
-    fontSize: 18,
+    fontSize: 20,
   },
+  id: {
+    fontWeight: "bold",
+    color: "grey",
+    fontSize: 15,
+  }
 });
