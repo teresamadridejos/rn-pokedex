@@ -8,6 +8,7 @@ import {
   Image,
   ImageBackground,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import { useContext } from "react";
 import { AppContext } from "../context/Context";
@@ -21,53 +22,55 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.flexContainer}>
-      <LinearGradient
-        colors={[
-          "rgb(254, 240, 138)",
-          "rgb(187, 247, 208)",
-          "rgb(134, 239, 172)",
-        ]}
-        style={styles.gradientBackground}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-      >
-        <ImageBackground
-          source={require("../../assets/pokemonBall.png")}
-          imageStyle={styles.backgroundImage}
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <LinearGradient
+          colors={[
+            "rgb(254, 240, 138)",
+            "rgb(187, 247, 208)",
+            "rgb(134, 239, 172)",
+          ]}
+          style={styles.gradientBackground}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
         >
-          <View>
-            <Image
-              source={require("../../assets/logo.png")}
-              style={styles.logo}
-            />
-            <Text style={styles.subtitle}>
-              Discover and collect Pokémon in your ultimate Pokédex adventure!
-            </Text>
-          </View>
-          {state.pokemons.length === 0 ? (
-            <Text>Cargando...</Text>
-          ) : (
-            <FlatList
-              numColumns={2}
-              contentContainerStyle={{
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-              data={state.pokemons[0]}
-              keyExtractor={(item, index) => index.toString()}
-              renderItem={({ item }) => (
-                <TouchableOpacity
-                  onPress={() => {
-                    navigation.navigate("PokemonDetail", { url: item.url });
-                  }}
-                >
-                  <PokemonCard url={item && "url" in item ? item.url : ""} />
-                </TouchableOpacity>
-              )}
-            />
-          )}
-        </ImageBackground>
-      </LinearGradient>
+          <ImageBackground
+            source={require("../../assets/pokemonBall.png")}
+            imageStyle={styles.backgroundImage}
+          >
+            <View>
+              <Image
+                source={require("../../assets/logo.png")}
+                style={styles.logo}
+              />
+              <Text style={styles.subtitle}>
+                Discover and collect Pokémon in your ultimate Pokédex adventure!
+              </Text>
+            </View>
+            {state.pokemons.length === 0 ? (
+              <Text>Cargando...</Text>
+            ) : (
+              <FlatList
+                numColumns={2}
+                contentContainerStyle={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                data={state.pokemons[0]}
+                keyExtractor={(item, index) => index.toString()}
+                renderItem={({ item }) => (
+                  <TouchableOpacity
+                    onPress={() => {
+                      navigation.navigate("PokemonDetail", { url: item.url });
+                    }}
+                  >
+                    <PokemonCard url={item && "url" in item ? item.url : ""} />
+                  </TouchableOpacity>
+                )}
+              />
+            )}
+          </ImageBackground>
+        </LinearGradient>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -78,6 +81,9 @@ const styles = StyleSheet.create({
   },
   gradientBackground: {
     flex: 1,
+  },
+  scrollContainer: {
+    color: "white",
   },
   backgroundImage: {
     opacity: 0.1,
