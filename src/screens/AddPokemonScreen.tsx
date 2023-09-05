@@ -62,7 +62,7 @@ export default function AddPokemonScreen() {
               style={styles.input}
               value={level}
               onChangeText={(text) => setLevel(text)}
-              placeholder="Pokemon level"
+              placeholder="Pokémon level"
             />
 
             <TouchableOpacity
@@ -110,6 +110,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     marginBottom: 6,
+    color: "grey"
   },
   input: {
     alignItems: "center",

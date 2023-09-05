@@ -23,27 +23,28 @@ export default function SearchScreen() {
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
       >
-         <ImageBackground
+        <ImageBackground
           source={require("../../assets/shapes.png")}
           imageStyle={styles.backgroundImage}
         >
-        <View style={styles.container}>
-          <Image
-            source={require("../../assets/pikachu.png")}
-            style={styles.pikachu}
-          />
-
-          <Text style={styles.title}>What Pokemon are you looking for?</Text>
-          <View style={styles.searchContainer}>
-            <View style={styles.searchIcon}>
-              <Text>🔍</Text>
-            </View>
-            <TextInput
-              style={styles.searchInput}
-              placeholder="Search Pokemon, ability, move..."
+          <View style={styles.container}>
+            <Image
+              source={require("../../assets/pikachu.png")}
+              style={styles.pikachu}
             />
+
+            <Text style={styles.title}>What Pokemon are you looking for?</Text>
+
+            <View style={styles.searchContainer}>
+              <View style={styles.searchIcon}>
+                <Text>🔍</Text>
+              </View>
+              <TextInput
+                style={styles.searchInput}
+                placeholder="Search Pokemon, ability, move..."
+              />
+            </View>
           </View>
-        </View>
         </ImageBackground>
       </LinearGradient>
     </SafeAreaView>
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    marginTop: 170
+    marginTop: 170,
   },
   backgroundImage: {
     opacity: 0.1,
@@ -94,13 +95,12 @@ const styles = StyleSheet.create({
   },
   searchIcon: {
     paddingRight: 10,
-    marginHorizontal: 20
+    marginHorizontal: 20,
   },
   pikachu: {
-    opacity: 0.5,
     width: 250,
     height: 150,
     marginLeft: 20,
-    zIndex: 1000
+    zIndex: 1000,
   },
 });
