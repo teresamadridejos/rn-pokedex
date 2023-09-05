@@ -119,12 +119,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     padding: 15,
     marginBottom: 20,
+    elevation: 5,
+    shadowColor: "rgba(0, 0, 0, 0.2)",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 1,
+    shadowRadius: 4,
   },
   submitButton: {
     paddingVertical: 12,
     borderRadius: 8,
     alignItems: "center",
     backgroundColor: "#64CCC5",
+    marginTop: 20
   },
   submitButtonText: {
     color: "white",
