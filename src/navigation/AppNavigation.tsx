@@ -36,7 +36,7 @@ const HomeStack = () => {
 const BottomTabNavigator = () => {
   return (
     <Tab.Navigator
-      screenOptions={({ route }) => ({
+      screenOptions={{
         headerShown: false,
         tabBarStyle: {
           height: 60,
@@ -51,16 +51,16 @@ const BottomTabNavigator = () => {
           shadowOpacity: 1,
           shadowRadius: 4,
         },
+        tabBarShowLabel: false, // Ocultar los labels de manera permanente
         tabBarActiveTintColor: "black",
         tabBarInactiveTintColor: "white",
-      })}
+      }}
     >
       <Tab.Screen
         name="Home"
         component={HomeStack}
         options={{
           headerShown: false,
-          tabBarLabel: "Home",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home" size={size} color={color} />
           ),
@@ -71,7 +71,6 @@ const BottomTabNavigator = () => {
         component={SearchScreen}
         options={{
           headerShown: false,
-          tabBarLabel: "Search",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="search" size={size} color={color} />
           ),
@@ -82,7 +81,6 @@ const BottomTabNavigator = () => {
         component={AddNewScreen}
         options={{
           headerShown: false,
-          tabBarLabel: "Add New",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="add-circle" size={size} color={color} />
           ),
