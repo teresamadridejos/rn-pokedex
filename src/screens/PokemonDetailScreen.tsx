@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
   },
   heartIcon: {
     position: "absolute",
-    top: 25,
+    top: 50,
     right: 25,
     zIndex: 1001,
   },
@@ -261,18 +261,16 @@ const styles = StyleSheet.create({
   abilityText: {
     fontSize: 18,
     marginBottom: 10,
-    backgroundColor: "#078716",
-    color: "white",
+    backgroundColor: "transparent",
+    color: "black",
     paddingVertical: 8,
     paddingHorizontal: 12,
     borderRadius: 20,
     textAlign: "center",
-    shadowColor: "black",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
     marginRight: 10,
     marginTop: 10,
+    borderColor: "grey", // Color del borde
+    borderWidth: 2, // Ancho del borde
   },
 });
 

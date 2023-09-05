@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     zIndex: 100,
+    backgroundColor: "transparent",
   },
   image: {
     width: "90%",
@@ -90,6 +91,7 @@ const styles = StyleSheet.create({
   textContainer: {
     flexDirection: "column",
     padding: 15,
+    backgroundColor: "transparent",
   },
   name: {
     fontWeight: "bold",
