@@ -13,6 +13,7 @@ import useFetch from "../hooks/useFetch";
 import { Pokemon } from "../interfaces/Pokemon.interface";
 import { LinearGradient } from "expo-linear-gradient";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { background } from "../utils/BackgroundsByType";
 
 const PokemonDetailScreen = () => {
   const route = useRoute();
@@ -24,6 +25,8 @@ const PokemonDetailScreen = () => {
   const handleFavoriteClick = () => {
     setIsFavorite(!isFavorite);
   };
+
+  const backgroundSelected = background[data?.types[0]?.type?.name];
 
   if (loading) {
     return (
@@ -80,9 +83,16 @@ const PokemonDetailScreen = () => {
                   <Text style={styles.name}>{name}</Text>
                 </View>
                 <View style={styles.typeContainer}>
+                  {" "}
                   {types.map(
                     (type: { type: { name: string } }, index: number) => (
-                      <Text key={index} style={styles.typeText}>
+                      <Text
+                        key={index}
+                        style={[
+                          styles.typeText,
+                          { backgroundColor: backgroundSelected },
+                        ]}
+                      >
                         {type.type.name.toUpperCase()}
                       </Text>
                     )
@@ -147,7 +157,7 @@ const styles = StyleSheet.create({
   },
   heartIcon: {
     position: "absolute",
-    top: 50,
+    top: 25,
     right: 25,
     zIndex: 1001,
   },
@@ -199,7 +209,6 @@ const styles = StyleSheet.create({
   },
   typeText: {
     fontSize: 18,
-    backgroundColor: "rgba(255, 255, 255, 0.75)",
     color: "black",
     padding: 10,
     paddingHorizontal: 20,
@@ -269,8 +278,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginRight: 10,
     marginTop: 10,
-    borderColor: "grey", // Color del borde
-    borderWidth: 2, // Ancho del borde
+    borderColor: "grey",
+    borderWidth: 2,
   },
 });
 
