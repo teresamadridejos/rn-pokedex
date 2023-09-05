@@ -241,6 +241,7 @@ const styles = StyleSheet.create({
   infoContainer: {},
   info: {
     fontSize: 25,
+    color: "#64CCC5",
     fontWeight: "bold",
     textDecorationLine: "underline",
     marginBottom: 15,
@@ -288,7 +289,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginRight: 10,
     marginTop: 10,
-    borderColor: "grey",
+    borderColor: "#64CCC5",
     borderWidth: 2,
   },
 });

@@ -85,15 +85,16 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 20,
     paddingHorizontal: 12,
-    margin: 10,
+    padding: 15,
+    marginBottom: 20,
   },
   searchInput: {
     flex: 1,
-    paddingVertical: 10,
     color: "grey",
   },
   searchIcon: {
-    padding: 10,
+    paddingRight: 10,
+    marginHorizontal: 20
   },
   pikachu: {
     opacity: 0.5,

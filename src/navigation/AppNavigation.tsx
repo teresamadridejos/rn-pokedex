@@ -36,7 +36,7 @@ const HomeStack = () => {
 const BottomTabNavigator = () => {
   return (
     <Tab.Navigator
-      screenOptions={{
+      screenOptions={({ route }) => ({
         headerShown: false,
         tabBarStyle: {
           height: 60,
@@ -44,7 +44,6 @@ const BottomTabNavigator = () => {
           paddingTop: 0,
           backgroundColor: "#64CCC5",
           borderTopWidth: 0,
-          padding: 10,
           elevation: 5,
           shadowColor: "rgba(0, 0, 0, 5.5)",
           shadowOffset: { width: 0, height: 2 },
@@ -54,16 +53,31 @@ const BottomTabNavigator = () => {
         tabBarShowLabel: false, // Ocultar los labels de manera permanente
         tabBarActiveTintColor: "black",
         tabBarInactiveTintColor: "white",
-      }}
+        tabBarIcon: ({ color, size, focused }) => {
+          let iconName;
+
+          if (route.name === "Home") {
+            iconName = focused ? "home" : "home-outline";
+          } else if (route.name === "Search") {
+            iconName = focused ? "search" : "search-outline";
+          } else if (route.name === "AddNew") {
+            iconName = focused ? "add-circle" : "add-circle-outline";
+          }
+
+          // Agregar resplandor blanco si la pestaña está activa
+          const iconColor = focused ? "white" : color;
+
+          return (
+            <Ionicons name={iconName} size={size} color={iconColor} />
+          );
+        },
+      })}
     >
       <Tab.Screen
         name="Home"
         component={HomeStack}
         options={{
           headerShown: false,
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home" size={size} color={color} />
-          ),
         }}
       />
       <Tab.Screen
@@ -71,9 +85,6 @@ const BottomTabNavigator = () => {
         component={SearchScreen}
         options={{
           headerShown: false,
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="search" size={size} color={color} />
-          ),
         }}
       />
       <Tab.Screen
@@ -81,9 +92,6 @@ const BottomTabNavigator = () => {
         component={AddNewScreen}
         options={{
           headerShown: false,
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="add-circle" size={size} color={color} />
-          ),
         }}
       />
     </Tab.Navigator>
