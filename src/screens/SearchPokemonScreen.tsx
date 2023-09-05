@@ -1,5 +1,13 @@
 import React from "react";
-import { View, Text, TextInput, StyleSheet, SafeAreaView } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  Image,
+  ImageBackground,
+  SafeAreaView,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 export default function SearchScreen() {
@@ -15,7 +23,16 @@ export default function SearchScreen() {
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
       >
+         <ImageBackground
+          source={require("../../assets/shapes.png")}
+          imageStyle={styles.backgroundImage}
+        >
         <View style={styles.container}>
+          <Image
+            source={require("../../assets/pikachu.png")}
+            style={styles.pikachu}
+          />
+
           <Text style={styles.title}>What Pokemon are you looking for?</Text>
           <View style={styles.searchContainer}>
             <View style={styles.searchIcon}>
@@ -27,6 +44,7 @@ export default function SearchScreen() {
             />
           </View>
         </View>
+        </ImageBackground>
       </LinearGradient>
     </SafeAreaView>
   );
@@ -42,6 +60,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    marginTop: 170
+  },
+  backgroundImage: {
+    opacity: 0.1,
+    width: 420,
+    height: 420,
+    top: -50,
   },
   title: {
     fontSize: 34,
@@ -49,10 +74,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     color: "white",
     marginBottom: 25,
-    marginTop: 50,
-    textShadowColor: "rgba(0, 0, 0, 0.4)", // Color de la sombra
-    textShadowOffset: { width: 1, height: 1 }, // Desplazamiento de la sombra
-    textShadowRadius: 7, // Radio de la sombra
+    marginTop: 5,
+    textShadowColor: "rgba(0, 0, 0, 0.4)",
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 7,
   },
   searchContainer: {
     flexDirection: "row",
@@ -69,5 +94,12 @@ const styles = StyleSheet.create({
   },
   searchIcon: {
     padding: 10,
+  },
+  pikachu: {
+    opacity: 0.5,
+    width: 250,
+    height: 150,
+    marginLeft: 20,
+    zIndex: 1000
   },
 });

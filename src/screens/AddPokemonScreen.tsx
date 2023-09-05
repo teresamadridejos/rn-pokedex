@@ -5,6 +5,7 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  ImageBackground,
   SafeAreaView,
 } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
@@ -34,6 +35,10 @@ export default function AddPokemonScreen() {
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
       >
+        <ImageBackground
+          source={require("../../assets/shapes.png")}
+          imageStyle={styles.backgroundImage}
+        >
         <View style={styles.container}>
           <Text style={styles.title}>Create your own Pokemon</Text>
           <Text style={styles.label}>Name</Text>
@@ -67,6 +72,7 @@ export default function AddPokemonScreen() {
             <Text style={styles.submitButtonText}>Submit</Text>
           </TouchableOpacity>
         </View>
+        </ImageBackground>
       </LinearGradient>
     </SafeAreaView>
   );
@@ -79,10 +85,17 @@ const styles = StyleSheet.create({
   gradientBackground: {
     flex: 1,
   },
+  backgroundImage: {
+    opacity: 0.1,
+    width: 420,
+    height: 420,
+    top: -50,
+  },
   container: {
     flex: 1,
     padding: 16,
     margin: 20,
+    marginTop: 170
   },
   title: {
     fontSize: 34,

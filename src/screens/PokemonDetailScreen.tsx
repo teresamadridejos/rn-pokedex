@@ -15,11 +15,21 @@ import { LinearGradient } from "expo-linear-gradient";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { background } from "../utils/BackgroundsByType";
 
+interface Ability {
+  ability: {
+    name: string;
+  };
+}
+
+interface RouteParams {
+  url: string;
+}
+
 const PokemonDetailScreen = () => {
   const route = useRoute();
-  const { url } = route.params;
+  const { url } = route.params as RouteParams;
 
-  const { data, loading, error } = useFetch<Pokemon>(url);
+  const { data, loading, error } = useFetch(url);
   const [isFavorite, setIsFavorite] = useState(false);
 
   const handleFavoriteClick = () => {
@@ -30,7 +40,7 @@ const PokemonDetailScreen = () => {
 
   if (loading) {
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView>
         <Text style={styles.loadingText}>Loading...</Text>
       </SafeAreaView>
     );
@@ -51,7 +61,7 @@ const PokemonDetailScreen = () => {
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
         >
-          <View style={styles.container}>
+          <View>
             <ScrollView>
               <TouchableOpacity
                 style={styles.heartIcon}
@@ -126,7 +136,7 @@ const PokemonDetailScreen = () => {
                   </View>
                   <Text style={styles.abilities}>Abilities:</Text>
                   <View style={styles.abilitiesContainer}>
-                    {abilities.map((ability, index) => (
+                    {abilities.map((ability: Ability, index: number) => (
                       <Text key={index} style={styles.abilityText}>
                         {ability.ability.name}
                       </Text>
