@@ -36,14 +36,28 @@ const HomeStack = () => {
 const BottomTabNavigator = () => {
   return (
     <Tab.Navigator
-      tabBarOptions={{
-        activeTintColor: "green",
-        inactiveTintColor: "gray",
-      }}
+      screenOptions={({ route }) => ({
+        headerShown: false,
+        tabBarStyle: {
+          height: 60,
+          paddingHorizontal: 5,
+          paddingTop: 0,
+          backgroundColor: "#64CCC5",
+          borderTopWidth: 0,
+          padding: 10,
+          elevation: 5,
+          shadowColor: "rgba(0, 0, 0, 5.5)",
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 1,
+          shadowRadius: 4,
+        },
+        tabBarActiveTintColor: "black",
+        tabBarInactiveTintColor: "white",
+      })}
     >
       <Tab.Screen
         name="Home"
-        component={HomeStack} // Usar la pila de navegación en lugar de HomeScreen directamente
+        component={HomeStack}
         options={{
           headerShown: false,
           tabBarLabel: "Home",
